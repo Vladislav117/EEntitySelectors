@@ -10,7 +10,7 @@ repositories {
 }  
   
 dependencies {  
-	implementation 'com.github.Vladislav117:EEntitySelectors:-SNAPSHOT'
+	implementation 'com.github.Vladislav117:EEntitySelectors:1.0'
 }
 ```
 Если вы используете Maven, то вам потребуется добавить репозиторий и зависимость в ваш `pom.xml`:
@@ -25,7 +25,7 @@ dependencies {
 <dependency>
 	<groupId>com.github.Vladislav117</groupId>
 	<artifactId>EEntitySelectors</artifactId>
-	<version>-SNAPSHOT</version>
+	<version>1.0</version>
 </dependency>
 ```
 ## Принцип работы
