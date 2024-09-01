@@ -35,11 +35,11 @@ public class StandardEEntitySelectorsEnvironment extends EEntitySelectorsEnviron
         add(new SimplePrefixSourceType("selection", "/", new SelectionSource()));
         setDefaultSource(new AllWorldsSource());
 
-        add(new SimpleWordSelectorType("any", List.of("e", "any", "every", "everyone", "entities"), new AnyEntitySelector()));
-        add(new SimpleWordSelectorType("living_entities", List.of("le", "living", "livingentities", "living_entities"), new LivingEntitySelector()));
-        add(new SimpleWordSelectorType("players", List.of("players", "player"), new PlayerSelector()));
-        add(new StringPropertySelectorType("entity_type", List.of("type", "entity_type"), entity -> entity.getType().toString().toLowerCase()).setCaseSensitive(false));
-        add(new StringPropertySelectorType("entity_name", List.of("name", "entity_name"), CommandSender::getName).setCaseSensitive(false));
+        add(new SimpleWordSelectorType("any", List.of("e", "any"), new AnyEntitySelector()));
+        add(new SimpleWordSelectorType("living_entities", List.of("le", "living"), new LivingEntitySelector()));
+        add(new SimpleWordSelectorType("players", List.of("player", "players"), new PlayerSelector()));
+        add(new StringPropertySelectorType("entity_type", "type", entity -> entity.getType().toString().toLowerCase()).setCaseSensitive(false));
+        add(new StringPropertySelectorType("entity_name", "name", CommandSender::getName).setCaseSensitive(false));
         add(new NumberPropertySelectorType("entity_x", "x", entity -> entity.getLocation().getX(), entity -> -entity.getWorld().getWorldBorder().getSize() / 2, entity -> entity.getWorld().getWorldBorder().getSize() / 2));
         add(new NumberPropertySelectorType("entity_y", "y", entity -> entity.getLocation().getY(), entity -> (double) entity.getWorld().getMinHeight(), entity -> (double) entity.getWorld().getMaxHeight()));
         add(new NumberPropertySelectorType("entity_z", "z", entity -> entity.getLocation().getX(), entity -> -entity.getWorld().getWorldBorder().getSize() / 2, entity -> entity.getWorld().getWorldBorder().getSize() / 2));
@@ -48,9 +48,9 @@ public class StandardEEntitySelectorsEnvironment extends EEntitySelectorsEnviron
             if (attributeInstance == null) return null;
             return attributeInstance.getValue();
         }));
-        add(new NumberPropertySelectorType("entity_fire_ticks", List.of("fireticks", "fire_ticks", "fire"), entity -> (double) entity.getFireTicks(), entity -> 0.0, entity -> (double) entity.getMaxFireTicks()));
-        add(new NumberPropertySelectorType("entity_freeze_ticks", List.of("freezeticks", "freeze_ticks", "freeze"), entity -> (double) entity.getFreezeTicks(), entity -> 0.0, entity -> (double) entity.getMaxFreezeTicks()));
-        add(new NumberPropertySelectorType("entity_passengers", List.of("passengers"), entity -> (double) entity.getPassengers().size(), entity -> 0.0, entity -> 2.0));
+        add(new NumberPropertySelectorType("entity_fire_ticks", "fire", entity -> (double) entity.getFireTicks(), entity -> 0.0, entity -> (double) entity.getMaxFireTicks()));
+        add(new NumberPropertySelectorType("entity_freeze_ticks", "freeze", entity -> (double) entity.getFreezeTicks(), entity -> 0.0, entity -> (double) entity.getMaxFreezeTicks()));
+        add(new NumberPropertySelectorType("entity_passengers", "passengers", entity -> (double) entity.getPassengers().size(), entity -> 0.0, entity -> 2.0));
         setDefaultSelectorType(new PlayerNameSelectorType("player_name"));
     }
 }
